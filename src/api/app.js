@@ -1,4 +1,5 @@
 const express = require('express');
+const { adRouter } = require('../routers/adRouter');
 
 const app = express();
 
@@ -9,10 +10,10 @@ const app = express();
 app.use(express.json());
 
 app.get('/', (request, response) => {
-  response.send('Oi');
+  response.send('Server is online');
 });
 
 /* Todas as rotas com /ad/<alguma-coisa> entram aqui e vão para o roteador */
-// app.use('/ad', adRouter);
+app.use('/ad', adRouter);
 
 module.exports = app;
