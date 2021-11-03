@@ -70,9 +70,19 @@ const updateAdByPk = async ({ id, marca, modelo, versao, ano,
   return { code: StatusCodes.OK, ad };
 };
 
+const removeAdByPk = async ({ id }) => {
+  if (!await adIdExists(id)) { 
+    return { code: StatusCodes.NOT_FOUND, message: 'Ad does not exist' }; 
+  }
+
+  await TbAnuncioWebmotors.destroy({ where: { id } });
+  return { code: StatusCodes.NO_CONTENT };
+};
+
 module.exports = {
   createAd,
   findAllAds,
   findAdByPk,
   updateAdByPk,
+  removeAdByPk,
 };
