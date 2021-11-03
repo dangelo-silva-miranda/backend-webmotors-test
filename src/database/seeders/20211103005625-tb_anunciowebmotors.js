@@ -10,7 +10,7 @@ module.exports = {
         versao:"1.4 LXL 16V FLEX 4P AUTOMÁTICO",
         ano:2018,
         quilometragem:0,
-        observacao:''
+        observacao:'Preto'
       },
       {
         id: 2,
@@ -19,7 +19,7 @@ module.exports = {
         versao:"2.0 EVO 4P AUTOMÁTICO",
         ano:2012,
         quilometragem:0,
-        observacao:''
+        observacao:'Branco'
       },
       ], { timestamps: false });
   },
