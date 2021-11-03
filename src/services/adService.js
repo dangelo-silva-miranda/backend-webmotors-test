@@ -48,8 +48,14 @@ const findAdByPk = async ({ id }) => {
 */
 const updateAdByPk = async ({ id, marca, modelo, versao, ano, 
   quilometragem, observacao }) => {
-  const idExists = await adIdExists(id);
-  if (!idExists) {
+  const { error } = adDataSchema.validate({
+      marca, modelo, versao, ano, quilometragem, observacao });
+  if (error) {
+      const { message } = error.details[0];    
+      return { code: StatusCodes.BAD_REQUEST, message };
+  }
+
+  if (!await adIdExists(id)) { 
     return { code: StatusCodes.NOT_FOUND, message: 'Ad does not exist' }; 
   }
 
@@ -58,12 +64,9 @@ const updateAdByPk = async ({ id, marca, modelo, versao, ano,
     { where: { id } },
   );
 
-  if (!rowsUpdate) {
-    return { code: StatusCodes.NOT_MODIFIED, message: 'Ad does not updated' }; 
-  }
+  if (!rowsUpdate) { return { code: StatusCodes.NOT_MODIFIED, message: 'Ad does not updated' }; }
 
-  const ad = await TbAnuncioWebmotors.findByPk(id);
-  
+  const ad = await TbAnuncioWebmotors.findByPk(id);  
   return { code: StatusCodes.OK, ad };
 };
 
