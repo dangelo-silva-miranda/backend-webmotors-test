@@ -24,7 +24,18 @@ const findAllAds = async () => {
   return { code: StatusCodes.OK, ads };
 };
 
+const findAdByPk = async ({ id }) => {
+  const ad = await TbAnuncioWebmotors.findByPk(id);
+
+  if (!ad) { 
+    return { code: StatusCodes.NOT_FOUND, message: 'Ad does not exist' }; 
+  }
+
+  return { code: StatusCodes.OK, ad };
+};
+
 module.exports = {
   createAd,
   findAllAds,
+  findAdByPk,
 };
