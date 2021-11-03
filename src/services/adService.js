@@ -34,6 +34,22 @@ const findAdByPk = async ({ id }) => {
   return { code: StatusCodes.OK, ad };
 };
 
+const updateAdByPk = async ({ id, marca, modelo, versao, ano, 
+  quilometragem, observacao }) => {
+  const rowsUpdate = await TbAnuncioWebmotors.update(
+    { marca, modelo, versao, ano, quilometragem, observacao }, 
+    { where: { id } },
+  );
+
+  if (!rowsUpdate) {
+    return { code: StatusCodes.NOT_MODIFIED, message: 'Ad does not updated' }; 
+  }
+
+  const ad = await TbAnuncioWebmotors.findByPk(id);
+  
+  return { code: StatusCodes.OK, ad };
+};
+
 module.exports = {
   createAd,
   findAllAds,
