@@ -16,7 +16,18 @@ const findAllAds = async (_req, res) => {
   return res.status(code).json(ads);
 };
 
+const findAdByPk = async (req, res) => {
+  const { code, message, ad } = await adService.findAdByPk(req.params);
+
+  if (!ad) {
+    return res.status(code).json({ message });
+  }
+
+  return res.status(code).json(ad);
+};
+
 module.exports = {
   createAd,
   findAllAds,
+  findAdByPk,
 };
