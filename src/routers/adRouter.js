@@ -9,6 +9,8 @@ adRouter.get('/', adController.findAllAds);
 
 adRouter.get('/:id', adController.findAdByPk);
 
+adRouter.put('/:id', adController.updateAdByPk);
+
 module.exports = {
   adRouter,
 };
