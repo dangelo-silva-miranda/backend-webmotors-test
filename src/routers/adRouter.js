@@ -3,6 +3,8 @@ const adController = require('../controllers/adController');
 
 const adRouter = express.Router();
 
+adRouter.post('/', adController.createAd);
+
 adRouter.get('/', adController.findAllAds);
 
 module.exports = {
