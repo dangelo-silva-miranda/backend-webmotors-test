@@ -2,7 +2,7 @@
   "name": "backend-webmotors-test",
   "version": "1.0.0",
   "description": "",
-  "main": "./src/api/server.js",
+  "main": "./src/backend/api/server.js",
   "scripts": {
     "start": "node .",
     "dev:debug": "nodemon .",
