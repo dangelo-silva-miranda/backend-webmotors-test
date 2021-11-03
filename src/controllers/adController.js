@@ -40,9 +40,20 @@ const updateAdByPk = async (req, res) => {
   return res.status(code).json(ad);
 };
 
+const removeAdByPk = async (req, res) => {
+  const { code, message } = await adService.removeAdByPk(req.params);
+
+  if (message) {
+    return res.status(code).json({ message });
+  }
+
+  return res.status(code).send();
+};
+
 module.exports = {
   createAd,
   findAllAds,
   findAdByPk,
   updateAdByPk,
+  removeAdByPk,
 };
