@@ -1,10 +1,10 @@
 const { StatusCodes } = require('http-status-codes');
 
-const { tbAnuncioWebmotors } = require('../models');
+const { TbAnuncioWebmotors } = require('../models');
 // const { adDataSchema } = require('./schemas');
 
 const findAllAds = async () => {
-  const ads = await tbAnuncioWebmotors.findAll();
+  const ads = await TbAnuncioWebmotors.findAll();
 
   return { code: StatusCodes.OK, ads };
 };
