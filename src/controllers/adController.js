@@ -1,5 +1,15 @@
 const adService = require('../services/adService');
 
+const createAd = async (req, res) => {
+  const { code, message, ad } = await adService.createAd(req.body);
+
+  if (!ad) {
+    return res.status(code).json({ message });
+  }
+
+  return res.status(code).json(ad);
+};
+
 const findAllAds = async (_req, res) => {
   const { code, ads } = await adService.findAllAds();
 
@@ -7,5 +17,6 @@ const findAllAds = async (_req, res) => {
 };
 
 module.exports = {
+  createAd,
   findAllAds,
 };
