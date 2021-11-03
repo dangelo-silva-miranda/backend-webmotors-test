@@ -1,7 +1,9 @@
+const cors = require('cors');
 const express = require('express');
 const { adRouter } = require('../routers/adRouter');
 
 const app = express();
+app.use(cors());
 
 /*
   Material consultado sobre bodyParser.json vs bodyParser.urlencoded
