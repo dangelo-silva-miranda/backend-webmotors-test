@@ -4,9 +4,85 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Anúncios Webmotors</title>
 </head>
 <body>
-  
+  <main>
+    <section>
+      <h1>Anúncios Webmotors</h1>
+      <h2>Cadastro</h2>
+      <form method="post">
+        <label for="make">Marca:
+        <select name="make" id="make"></select>
+        </label><br/>
+
+        <label for="model">Modelo:
+        <select name="model" id="model"></select>
+        </label><br/>
+
+        <label for="version">Versão:
+        <select name="version" id="version"></select>
+        </label><br/>
+
+        <label for="year">Ano:
+        <input type="text" name="year" id="year">
+        </label><br/>
+
+        <label for="Km">Km:
+          <input type="text" name="Km" id="Km">
+        </label><br/>
+
+        <label for="note">Observação:
+          <input type="text" name="note" id="note">
+        </label><br/>
+
+        <button type="submit" id="">Cadastrar</button>
+        <button type="reset" id="">Limpar</button>
+      </form>
+  </section>
+    <section>
+      <h2>Anúncios</h2>
+      <ul id="ad" name="ad"></ul>
+    </section>
+  </main>
 </body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  const endpoints = {
+    make: () => 'https://desafioonline.webmotors.com.br/api/OnlineChallenge/Make',
+    model: (makeId) => `https://desafioonline.webmotors.com.br/api/OnlineChallenge/Model?MakeID=${makeId}`,
+    version: (modelId) => `https://desafioonline.webmotors.com.br/api/OnlineChallenge/Version?ModelID=${modelId}`,
+    createAd: 'http://localhost:5002/ad',
+    findAllAds: 'http://localhost:5002/ad',
+    findAdByPk: (id) => `http://localhost:5002/ad/${id}`,
+    updateAdByPk: (id) => `http://localhost:5002/ad/${id}`,
+    removeAdByPk: (id) => `http://localhost:5002/ad/${id}`
+  };
+
+  async function getContent(endpoint){
+    try {
+      const {data} = await axios.get(endpoint);
+      // const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  getContent();
+  const createElementByTag = ({tag, text}) => {
+      const tagElement = document.createElement(tag);
+      const tagText = document.createTextNode(text);
+      tagElement.append(tagText);
+      return tagElement;
+    };
+
+  const findAllAds = () => {
+    const ul = document.querySelector('#ad');
+    
+    const li = createElementByTag({tag: 'li', text: ''});
+    ul.appendChild(li);
+
+  }
+
+</script>
 </html>
