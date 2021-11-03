@@ -26,8 +26,23 @@ const findAdByPk = async (req, res) => {
   return res.status(code).json(ad);
 };
 
+const updateAdByPk = async (req, res) => {
+  const { params: { id }, body: { marca, modelo, versao, ano, 
+    quilometragem, observacao } } = req;
+  const { code, message, ad } = await adService.updateAdByPk({ 
+    id, marca, modelo, versao, ano, quilometragem, observacao, 
+  });
+
+  if (!ad) {
+    return res.status(code).json({ message });
+  }
+
+  return res.status(code).json(ad);
+};
+
 module.exports = {
   createAd,
   findAllAds,
   findAdByPk,
+  updateAdByPk,
 };
