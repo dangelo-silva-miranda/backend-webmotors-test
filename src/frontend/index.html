@@ -9,7 +9,7 @@
 <body>
   <main>
     <section>
-      <h1>Anúncios Webmotors</h1>
+      <h1>Webmotors</h1>
       <h2>Cadastro</h2>
       <form method="post">
         <label for="make">Marca:
@@ -39,7 +39,7 @@
         <button type="submit" id="">Cadastrar</button>
         <button type="reset" id="">Limpar</button>
       </form>
-  </section>
+    </section>
     <section>
       <h2>Anúncios</h2>
       <ul id="ad" name="ad"></ul>
@@ -63,12 +63,12 @@
     try {
       const {data} = await axios.get(endpoint);
       // const data = await response.json();
-      console.log(data);
+      return data;
     } catch (error) {
       console.error(error);
     }
   }
-  getContent();
+
   const createElementByTag = ({tag, text}) => {
       const tagElement = document.createElement(tag);
       const tagText = document.createTextNode(text);
@@ -76,13 +76,20 @@
       return tagElement;
     };
 
-  const findAllAds = () => {
+  const findAllAds = async () => {
     const ul = document.querySelector('#ad');
+    const ads = await getContent(endpoints['findAllAds']);
     
-    const li = createElementByTag({tag: 'li', text: ''});
-    ul.appendChild(li);
+    ads.forEach((ad) => {
+      console.log(ad);
+      const li = document.createElement('li');
+      ad.keys
+    });
+    // const li = createElementByTag({tag: 'li', text: ''});
+    // ul.appendChild(li);
 
   }
 
+  findAllAds();
 </script>
 </html>
