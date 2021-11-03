@@ -42,6 +42,10 @@ const findAdByPk = async ({ id }) => {
   return { code: StatusCodes.OK, ad };
 };
 
+/*
+  Material consultado sobre método update e o seu retorno
+  https://newbedev.com/sequelize-update-record-and-return-result
+*/
 const updateAdByPk = async ({ id, marca, modelo, versao, ano, 
   quilometragem, observacao }) => {
   const idExists = await adIdExists(id);
