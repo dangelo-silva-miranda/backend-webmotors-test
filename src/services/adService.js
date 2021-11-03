@@ -3,6 +3,14 @@ const { StatusCodes } = require('http-status-codes');
 const { TbAnuncioWebmotors } = require('../models');
 const { adDataSchema } = require('./schemas');
 
+const adIdExists = async (id) => {
+  // Verifica se id existe no banco de dados
+  const idDB = await TbAnuncioWebmotors.findOne({ 
+    attributes: ['id'], where: { id } });
+  
+  return idDB !== null;
+};
+
 const createAd = async ({ marca, modelo, versao, ano, quilometragem, observacao }) => {
   const { error } = adDataSchema.validate({ 
     marca, modelo, versao, ano, quilometragem, observacao });
@@ -36,6 +44,11 @@ const findAdByPk = async ({ id }) => {
 
 const updateAdByPk = async ({ id, marca, modelo, versao, ano, 
   quilometragem, observacao }) => {
+  const idExists = await adIdExists(id);
+  if (!idExists) {
+    return { code: StatusCodes.NOT_FOUND, message: 'Ad does not exist' }; 
+  }
+
   const rowsUpdate = await TbAnuncioWebmotors.update(
     { marca, modelo, versao, ano, quilometragem, observacao }, 
     { where: { id } },
@@ -54,4 +67,5 @@ module.exports = {
   createAd,
   findAllAds,
   findAdByPk,
+  updateAdByPk,
 };
