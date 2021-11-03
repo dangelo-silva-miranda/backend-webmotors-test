@@ -27,7 +27,7 @@
     "sequelize": "^6.9.0"
   },
   "devDependencies": {
-    "eslint-config-trybe-backend": "^1.0.4",
+    "eslint-config-airbnb": "^18.2.1",
     "nodemon": "^2.0.14",
     "sequelize-cli": "^6.2.0"
   }
