@@ -3,7 +3,7 @@
   https://sequelize.org/master/manual/validations-and-constraints.html
 */
 const tbAnuncioWebmotors = (sequelize, DataTypes) => {
-  const tbanunciowebmotors = sequelize.define('tb_AnuncioWebmotors', {
+  const tbanunciowebmotors = sequelize.define('tbAnuncioWebmotors', {
     marca: { type: DataTypes.STRING(45), allowNull: false },
     modelo: { type: DataTypes.STRING(45), allowNull: false },
     versao: { type: DataTypes.STRING(45), allowNull: false },
@@ -12,7 +12,7 @@ const tbAnuncioWebmotors = (sequelize, DataTypes) => {
     observacao: { type: DataTypes.TEXT, allowNull: false },
   }, {
     timestamps: false,
-    modelName: 'tb_AnuncioWebmotors',
+    tableName: 'tb_AnuncioWebmotors',
   });
   return tbanunciowebmotors;
 };
