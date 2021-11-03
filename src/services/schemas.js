@@ -14,7 +14,7 @@ const adDataSchema = Joi.object().keys({
   modelo: text.max(45).required(),
   versao: text.max(45).required(),
   ano: Joi.number().integer().positive().required(),
-  quilometragem: Joi.number().integer().positive().required(),
+  quilometragem: Joi.number().integer().min(0).required(),
   observacao: text.required(),
 });
 
